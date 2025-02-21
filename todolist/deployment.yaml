@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todolist
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      containers:
+        - name: todolist-container
+          image: icr.io/todolistapp/todolist-app:latest
+          ports:
+            - containerPort: 8000
+      imagePullSecrets:
+        - name: icr-secret
